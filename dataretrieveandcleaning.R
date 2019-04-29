@@ -23,10 +23,10 @@ accessURL <- "https://api.twitter.com/oauth/access_token"
 # Set constant authURL
 authURL <- "https://api.twitter.com/oauth/authorize"
 
-consumer_key <- 'BMpfmSmQwaizU0nILjsojfgWQ'
-consumer_secret <- 'KAJFPHjd0G0GPoq6Y7groRLSeUyLhIR5nDCtCZZDshFeWxFTvE'
-access_token <- '3073142365-UM1B69AVnaDTccYGBPu0X3rM5ImrQ6BjMswlklN'
-access_secret <- '5y76PTdAYEWhAK73yfnEAMQUJuDFD9GYppo0OYXU0fErQ'
+consumer_key <- 'XXXXX'
+consumer_secret <- 'XXXXX'
+access_token <- 'XXXXX'
+access_secret <- 'XXXXX'
 
 setup_twitter_oauth(consumer_key,
                     consumer_secret,
