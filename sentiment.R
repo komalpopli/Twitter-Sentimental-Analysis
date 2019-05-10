@@ -11,10 +11,10 @@ library(syuzhet)
 # Set constant authURL
 #authURL <- "https://api.twitter.com/oauth/authorize"
 
-consumer_key <- 'qMWWFyU7xv9XJN9AtcplgsFGk'
-consumer_secret <- 'vc4LZT2n5SjkDgsPjZXMeU6H2ONWwBl23ayDnHUdsCQNusfPTZ'
-access_token <- '3073142365-OYdilxIAZxFkimdHWiqJ9kSO4Zt8diyDkQmtCVr'
-access_secret <- '3Zp65DsH1rB6bH1SylaecOGtOzc0PGR0c4j4F2sGkOdP4'
+consumer_key <- 'XXXX'
+consumer_secret <- 'XXXX'
+access_token <- 'XXXX'
+access_secret <- 'XXXX'
 
 setup_twitter_oauth(consumer_key,
                     consumer_secret,
