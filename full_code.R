@@ -1,4 +1,4 @@
-
+#storing <- function(x){
 library(twitteR)
 library(ROAuth)
 library(syuzhet)
@@ -11,7 +11,7 @@ setup_twitter_oauth(consumer_key,
                     consumer_secret,
                     access_token,
                     access_secret)
-searched_string <- "#Tuesday"
+searched_string <- "#JCB"
 tweets_g <- searchTwitter(searched_string,n=100,lang = "en")
 tweet <- twListToDF(tweets_g)
 cleaned_data <- lapply(tweet$text, function(tweets.df2){
@@ -36,11 +36,10 @@ category_senti<-ifelse(sent.value<0,"Negative",ifelse(sent.value>0,"Positive","N
 s<-data.frame(category_senti,sent.value)
 data <- data.frame(cleaned_data,category_senti)
 tweet_info <- cbind(tweet,data)
-head(tweet_info)
 keeps <- c("cleaned_data", "category_senti","created","screenName","latitude","longitude","id")
 tweet_info <- tweet_info[keeps]
-tweet_info$id_topic  <- 0
-tweet_info
+
+
 
 library(RMySQL)
 library(dbConnect)
@@ -53,8 +52,13 @@ db_host <- "127.0.0.1" # for local access
 db_port <- 3306
 mydb <-  dbConnect(MySQL(), user = db_user, password = db_password,
                    dbname = db_name, host = db_host, port = db_port)
-dbSendQuery(mydb,"INSERT INTO topic_ref (topic_name) VALUES ('#Saturday');")
-dbSendQuery(mydb,"INSERT INTO tweet_info(id_topic) SELECT topic_id FROM topic_ref;")
+dbSendQuery(mydb,paste("INSERT INTO topic_ref (topic_name) VALUES ('",searched_string,"');"))
+rs <- dbSendQuery(mydb, paste("SELECT topic_id FROM topic_ref WHERE topic_name = '",searched_string,"';"))
+a <- dbFetch(rs)
+
+tweet_info$id_topic <- as.numeric(a)
+#dbSendQuery(mydb,paste("INSERT INTO tweet_info(id_topic) SELECT topic_id FROM topic_ref WHERE topic_name = '",searched_string,"';"))
+
 dbWriteTable(mydb,  name = 'tweet_info',value = tweet_info, append=T, row.names=F, overwrite=F) 
 
 
@@ -65,4 +69,5 @@ xyz <- dbReadTable(conn = mydb, name = 'tweet_info')
 abc <- dbReadTable(conn = mydb, name = 'topic_ref')
 View(xyz)
 abc
+#}
 #}
