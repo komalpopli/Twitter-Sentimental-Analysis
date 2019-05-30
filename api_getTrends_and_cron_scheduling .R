@@ -17,3 +17,6 @@ setup_twitter_oauth(consumer_key,
 current_trends <- getTrends(woeid)
 a <-storing(current_trends$name[1])
 a
+
+
+1 * * * * /usr/lib/R/bin/Rscript '/home/komal/api_getTrends.R'  >> '/home/komal/api_getTrends.log' 2>&1
